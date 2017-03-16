@@ -109,14 +109,16 @@ const store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
 	},
 	actions: {
 		//获取数据 异步
-		increments(context) {
-			context.commit('increment');
+		increments: function (context) {
+			context.commit('INCREMENT');
 		},
-		loadMovieList: function ({ commit }) {
-			__WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('https://bird.ioliu.cn/netease?playlist_id=621793299').then(res => {
-				commit('SET_MOVIE_LIST', { list: res.data.result.tracks });
+		loadMovieList: function (context) {
+			__WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('https://bird.ioliu.cn/netease?playlist_id=621793299').then(function (res) {
+				context.commit('SET_MOVIE_LIST', { list: res.data.result.tracks });
 				// state.loading = false
-			}).catch(err => console.log(err));
+			}).catch(function (err) {
+				console.log(err);
+			});
 		},
 		changeFlag: function (context) {
 			context.commit('SET_FLAG');
@@ -126,10 +128,10 @@ const store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
 		}
 	},
 	mutations: { //同步
-		increment(state) {
+		INCREMENT: function (state) {
 			state.count++;
 		},
-		SET_MOVIE_LIST: function (state, { list }) {
+		SET_MOVIE_LIST: function (state, list) {
 			state.loading = true;
 			setTimeout(function () {
 				state.loading = false;
@@ -143,7 +145,7 @@ const store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
 		SET_BottomPopup: function (state) {
 			state.topPopup = true;
 			if (state.topPopup) {
-				setTimeout(() => {
+				setTimeout(function () {
 					state.topPopup = false;
 				}, 2000);
 			}
@@ -151,7 +153,7 @@ const store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
 
 	},
 	getters: {
-		doubleCount(state) {
+		doubleCount: function (state) {
 			return state.count * 2;
 		}
 	},
@@ -2009,9 +2011,11 @@ new __WEBPACK_IMPORTED_MODULE_0_vue__["default"]({
   el: '#app',
   router: __WEBPACK_IMPORTED_MODULE_2__router__["a" /* default */],
   store: __WEBPACK_IMPORTED_MODULE_3__store_index__["a" /* default */],
-  render: h => h(__WEBPACK_IMPORTED_MODULE_1__App___default.a)
+  template: '<App/>',
+  components: { App: __WEBPACK_IMPORTED_MODULE_1__App___default.a }
+  // render: h => h(App)
 });
 
 /***/ })
 ],[94]);
-//# sourceMappingURL=app.ff431537e5b4ceba686d.js.map
+//# sourceMappingURL=app.f62f7446c82a6982ac57.js.map

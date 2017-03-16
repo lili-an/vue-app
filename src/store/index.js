@@ -19,15 +19,15 @@ const store = new Vuex.Store({
 	},
 	actions: {
 		//获取数据 异步
-		increments (context) {
-	      context.commit('increment')
+		increments: function(context) {
+	      context.commit('INCREMENT')
 	    },
-		loadMovieList: function({commit}) {
+		loadMovieList: function(context) {
 			axios.get('https://bird.ioliu.cn/netease?playlist_id=621793299')
-			.then(res => {
-                commit('SET_MOVIE_LIST', {list: res.data.result.tracks})
+			.then(function(res) {
+                context.commit('SET_MOVIE_LIST', {list: res.data.result.tracks})
                 // state.loading = false
-            }).catch(err => console.log(err))
+            }).catch(function(err){console.log(err)})
 		},
 		changeFlag: function(context) {
 			context.commit('SET_FLAG')
@@ -37,10 +37,10 @@ const store = new Vuex.Store({
 		},
 	},
 	mutations: {  //同步
-		increment (state) {
+		INCREMENT: function(state) {
 	      state.count++
 	    },
-		SET_MOVIE_LIST: function(state, {list}) {
+		SET_MOVIE_LIST: function(state, list) {
 			state.loading = true
 			setTimeout(function() {
 				state.loading = false
@@ -54,7 +54,7 @@ const store = new Vuex.Store({
 		SET_BottomPopup: function(state) {
 			state.topPopup = true
 	        if (state.topPopup) {
-		        setTimeout(() => {
+		        setTimeout(function() {
 		          state.topPopup = false
 		        }, 2000)
 		      }
@@ -62,7 +62,7 @@ const store = new Vuex.Store({
 
 	},
 	getters: {
-		doubleCount (state) {
+		doubleCount: function(state) {
 	      return state.count * 2
 	    }
 	},
