@@ -23,16 +23,16 @@ import mFooter from './components/footer'
 import './assets/sass/reset.css'  //css link方式引入会报错
 export default {
   name: 'app',
-  data() {
+  data: function() {
     return {
       
     }
   },
   computed: {
-    showHF() {
+    showHF: function() {
       return this.$store.state.showHF
     },
-    loading() {
+    loading: function() {
       return this.$store.state.loading
     }
   },

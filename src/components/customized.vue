@@ -3,7 +3,7 @@
 </template>
 <script type="text/javascript">
 	export default {
-		mounted() {
+		mounted: function() {
 	       this.$nextTick(function() {
 	          this.$store.state.showHF = true
 	       })

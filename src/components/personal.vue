@@ -72,17 +72,17 @@
 </template>
 <script type="text/javascript">
 	export default {
-	  data () {
+	  data: function() {
 	    return {
   			
 	    }
 	  },
 	  computed: {
-	    topPopupMsg() {
+	    topPopupMsg: function() {
 	      return this.$store.state.topPopupMsg
 	    },
 	  },
-	  mounted() {
+	  mounted: function() {
        this.$nextTick(function() {
           this.$store.state.showHF = true
 	       })

@@ -7,10 +7,10 @@
 <script>
 export default {
   computed: {
-    topPopup() {
+    topPopup: function() {
       return this.$store.state.topPopup
     },
-    topPopupMsg() {
+    topPopupMsg: function() {
       return this.$store.state.topPopupMsg
     },
   },

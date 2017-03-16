@@ -12,7 +12,7 @@
 </template>
 <script type="text/javascript">
 	export default {
-		data() {
+		data: function() {
 			return {
 				nameValue: "",
 				passwordValue: "",
@@ -22,17 +22,17 @@
 				confirmPasswordErrorText: "",
 			}
 		},
-		mounted() {
+		mounted: function() {
 			this.$store.state.showHF = false
 		},
 		watch: {
-			nameValue(v) {
+			nameValue:function(v) {
 				this.changeValue()
 			},
-			passwordValue(v) {
+			passwordValue:function(v) {
 				this.changeValue()
 			},
-			confirmPasswordValue(v) {
+			confirmPasswordValue:function(v) {
 				this.changeValue()
 			}
 			

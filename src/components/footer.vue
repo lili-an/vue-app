@@ -11,21 +11,21 @@
 
 <script>
 export default {
-  data () {
+  data: function() {
     return {
       // bottomNav: 'home'
     }
   },
-  mounted() {
+  mounted: function() {
 
   },
   computed: {
-    bottomNav() {
+    bottomNav: function() {
       return this.$store.state.bottomNav
     }
   },
   methods: {
-    handleChange (val) {
+    handleChange: function(val) {
       this.$store.state.bottomNav = val
 
       if(this.bottomNav == 'home') {

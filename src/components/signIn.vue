@@ -19,7 +19,7 @@
 <script type="text/javascript">
 	import breakfast from '../assets/img/breakfast.jpg'
 	export default {
-		data() {
+		data: function() {
 			return {
 				breakfast,
 				nameValue: "",
@@ -28,7 +28,7 @@
 				passwordErrorText: "",
 			}
 		},
-		mounted() {
+		mounted: function() {
 			this.$store.state.showHF = false
 		},
 
@@ -38,10 +38,10 @@
 			// }
 		},
 		watch: {
-			nameValue(v) {
+			nameValue:function(v) {
 				this.changeValue()
 			},
-			passwordValue(v) {
+			passwordValue:function(v) {
 				this.changeValue()
 			},
 			

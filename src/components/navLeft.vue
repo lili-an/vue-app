@@ -36,26 +36,26 @@
 <script>
 
 export default {
-  data () {
+  data: function() {
     return {
 
     }
   },
   computed: {
-    open () {
+    open: function() {
       return this.$store.state.open
     },
-    docked () {
+    docked: function() {
       return this.$store.state.docked
     }
   },
-  mounted() {
+  mounted: function() {
   	this.$nextTick(function() {
   		// this.getState();
   	})
   },
   methods: {
-    toggle (flag) {    	
+    toggle: function(flag) {    	
 		this.$store.dispatch('changeFlag')
     },
   },

@@ -24,13 +24,13 @@
 import img from '../assets/img/breakfast.jpg'
 import myron from '../assets/img/breakfast.jpg'
 export default {
-  data () {
+  data: function() {
     return {
       img,
       myron
     }
   },
-  mounted() {
+  mounted: function() {
        this.$nextTick(function() {
           this.$store.state.showHF = true
        })

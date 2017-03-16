@@ -19,20 +19,20 @@
 
 export default {
 
-  data () {
+  data: function() {
     return {
     	n: 1,
     }
   },
   computed: {
-  	  limit() {
+  	  limit: function() {
         return this.$store.state.limit
       },
-      movieLists() {
+      movieLists: function() {
         return this.$store.state.movieList
       }
     },
-    mounted() {
+    mounted: function() {
        this.$nextTick(function() {
           this.movieList()
           this.$store.state.showHF = true
@@ -43,7 +43,7 @@ export default {
       movieList: function(){
         this.$store.dispatch('loadMovieList')
         },
-	  swipeUp:function() {
+	  swipeUp: function() {
 		this.n+=1
 		this.$store.dispatch('loadMovieList')
 		this.$store.state.limit = this.n * 8
