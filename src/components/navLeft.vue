@@ -4,28 +4,18 @@
       <div class="demo-menu-container">
 		  <mu-paper class="demo-menu">
 		    <mu-menu desktop>
-		      <mu-menu-item title="Bold" afterText="⌘B"/>
-		      <mu-menu-item title="Italic" afterText="⌘I"/>
-		      <mu-menu-item title="Underline" afterText="⌘U"/>
-		      <mu-menu-item title="Strikethrough" afterText="Alt+Shift+5"/>
-		      <mu-menu-item title="Superscript" afterText="⌘."/>
-		      <mu-menu-item title="Subscript" afterText="⌘,"/>
+		      <div v-if="usersOff == false">
+		    	<mu-float-button icon="account_circle" info class="demo-float-button"/>
+		      </div>
+		      <div v-else>
+		        <mu-float-button icon="add" secondary class="demo-float-button"/><br/>
+		      </div>  	      
+		      <mu-menu-item title="set" afterText="⌘"/>
 		      <mu-divider />
-		      <mu-menu-item title="Paragraph styles" rightIcon="keyboard_arrow_right"/>
-		      <mu-menu-item title="Align" rightIcon="keyboard_arrow_right"/>
-		      <mu-menu-item title="Line spacing" rightIcon="keyboard_arrow_right"/>
-		      <mu-menu-item title="Paragraph styles" rightIcon="keyboard_arrow_right"/>
-		      <mu-menu-item title="Numbered list" rightIcon="keyboard_arrow_right"/>
-		      <mu-menu-item title="List options" rightIcon="keyboard_arrow_right"/>
-		      <mu-divider />
-		      <mu-menu-item title="Clear formatting" afterText="⌘/"/>
-		    </mu-menu>
-		  </mu-paper>
-		  <mu-paper class="demo-menu">
-		    <mu-menu desktop :width="256">
-		      <mu-menu-item title="Open" afterText="Cmd + O" />
-		      <mu-menu-item title="Paste in place" afterText="Shift + V" />
-		      <mu-menu-item title="Research" afterText="Opt + Shift + Cmd + I" />
+		      <mu-menu-item title="home" rightIcon="keyboard_arrow_right"/>
+		      <mu-menu-item title="customized" rightIcon="keyboard_arrow_right"/>
+		      <mu-menu-item title="share" rightIcon="keyboard_arrow_right"/>
+		      <mu-menu-item title="personal" rightIcon="keyboard_arrow_right"/>
 		    </mu-menu>
 		  </mu-paper>
 		</div>
@@ -36,26 +26,29 @@
 <script>
 
 export default {
-  data: function() {
+  data () {
     return {
 
     }
   },
   computed: {
-    open: function() {
+    open () {
       return this.$store.state.open
     },
-    docked: function() {
+    docked () {
       return this.$store.state.docked
-    }
+    },
+    usersOff() {
+      return this.$store.state.usersOff
+    },
   },
-  mounted: function() {
+  mounted() {
   	this.$nextTick(function() {
   		// this.getState();
   	})
   },
   methods: {
-    toggle: function(flag) {    	
+    toggle (flag) {    	
 		this.$store.dispatch('changeFlag')
     },
   },

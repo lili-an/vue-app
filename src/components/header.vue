@@ -10,13 +10,13 @@
 
 	export default {
 		computed: {
-		    count: function() {
+		    count () {
 		      return this.$store.state.count
 		    }
 		  },
 		  methods: {
- 		    toggle: function() {
-		      this.$store.dispatch('increments').then(function(res) {
+ 		    toggle () {
+		      this.$store.dispatch('increments').then(() => {
 				  console.log(this.$store.state.count)
 				})
 		      this.$store.dispatch('changeFlag')

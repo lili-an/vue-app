@@ -19,7 +19,7 @@
 <script type="text/javascript">
 	import breakfast from '../assets/img/breakfast.jpg'
 	export default {
-		data: function() {
+		data() {
 			return {
 				breakfast,
 				nameValue: "",
@@ -28,27 +28,41 @@
 				passwordErrorText: "",
 			}
 		},
-		mounted: function() {
-			this.$store.state.showHF = false
+		mounted() {
+			this.$nextTick(function() {
+				this.$store.state.showHF = false
+			})
 		},
-
 		computed: {
-			// showHF() {
-			// 	return this.$store.state.showHF
-			// }
+			users() {
+				return this.$store.state.users
+			},
 		},
 		watch: {
-			nameValue:function(v) {
+			nameValue(v) {
 				this.changeValue()
 			},
-			passwordValue:function(v) {
+			passwordValue(v) {
 				this.changeValue()
 			},
 			
 		},
 		methods: {
 			signin:function() {
+
 				this.changeValue()
+				var localUsers = JSON.parse(localStorage.getItem('users'))
+
+				if(this.nameValue === localUsers.name && this.passwordValue === localUsers.password) {
+					this.$store.state.topPopupMsg = '登录成功'
+	  				this.$store.dispatch('changeBottomPopup')
+	  				this.$store.state.usersOff = false
+	  				this.$store.state.bottomNav = "home"
+	  				this.$router.replace('/')
+				} else {
+					this.$store.state.topPopupMsg = '登录失败'
+	  				this.$store.dispatch('changeBottomPopup')
+				}
 			},
 			changeValue:function() {
 
@@ -58,6 +72,7 @@
 			},
 			back: function() {
 				this.$router.replace('/')
+				this.$store.state.bottomNav = "home"
 			}
 		}
 	}

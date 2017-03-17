@@ -16,7 +16,7 @@
 <script>
 import axios from 'axios'
   export default {
-    data: function() {
+    data() {
       return {
         mpList:[]
       }
@@ -24,7 +24,7 @@ import axios from 'axios'
     computed: {
       
     },
-    mounted: function() {
+    mounted() {
        this.$nextTick(function() {
           this.mp3List()
           this.$store.state.showHF = false
@@ -34,9 +34,9 @@ import axios from 'axios'
       mp3List: function(){
         var id = this.$route.params.id
         axios.get('https://bird.ioliu.cn/netease?id='+id)
-          .then(function(res) {
+          .then(res => {
               this.mpList = res.data.songs
-          }).catch(function(err) {console.log(err)})
+          }).catch(err => console.log(err))
        
       },
       back: function() {

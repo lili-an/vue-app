@@ -24,15 +24,16 @@
 import img from '../assets/img/breakfast.jpg'
 import myron from '../assets/img/breakfast.jpg'
 export default {
-  data: function() {
+  data () {
     return {
       img,
       myron
     }
   },
-  mounted: function() {
+  mounted() {
        this.$nextTick(function() {
           this.$store.state.showHF = true
+          this.$store.state.bottomNav= 'share'
        })
     },
 }

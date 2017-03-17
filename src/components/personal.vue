@@ -1,11 +1,15 @@
 <template>
 <div class="demo-grid">
   <mu-row gutter>
-    <mu-col width="100" tablet="50" desktop="33">
+    <mu-col width="100" tablet="50" desktop="33" v-if="usersOff == true">
     	<mu-float-button icon="add" secondary class="demo-float-button" @click="register"/><br/>
     	<router-link to="personal">
 		  	<span class="icon-span">注册／登录</span>
 		</router-link>
+    </mu-col>
+    <mu-col width="100" tablet="50" desktop="33" v-else>
+    	<mu-float-button icon="account_circle" info class="demo-float-button"/><br/>
+    	<mu-flat-button label="退出登录" class="demo-flat-button" @click="logout"/>
     </mu-col>
     <mu-col width="100" tablet="50" desktop="33">
     	<mu-list>
@@ -72,19 +76,23 @@
 </template>
 <script type="text/javascript">
 	export default {
-	  data: function() {
+	  data () {
 	    return {
-  			
+
 	    }
 	  },
 	  computed: {
-	    topPopupMsg: function() {
+	    topPopupMsg() {
 	      return this.$store.state.topPopupMsg
 	    },
+	    usersOff() {
+	      return this.$store.state.usersOff
+	    },
 	  },
-	  mounted: function() {
+	  mounted() {
        this.$nextTick(function() {
           this.$store.state.showHF = true
+          this.$store.state.bottomNav= 'personal'
 	       })
 	    },
 	  methods: {
@@ -93,6 +101,11 @@
 	  		// this.$store.state.topPopupMsg = '总得登录吧'
 	  		// this.$store.dispatch('changeBottomPopup')
 	  	},
+	  	logout: function() {
+		  	this.$router.replace('/')
+		  	this.$store.state.bottomNav = "home"
+		  	this.$store.state.usersOff = true
+		  }
 	  },
 	}
 </script>

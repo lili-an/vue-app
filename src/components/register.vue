@@ -12,7 +12,7 @@
 </template>
 <script type="text/javascript">
 	export default {
-		data: function() {
+		data() {
 			return {
 				nameValue: "",
 				passwordValue: "",
@@ -22,17 +22,24 @@
 				confirmPasswordErrorText: "",
 			}
 		},
-		mounted: function() {
-			this.$store.state.showHF = false
+		mounted() {
+			this.$nextTick(function() {
+				this.$store.state.showHF = false
+			})	
+		},
+		computed: {
+			users() {
+				return this.$store.state.users
+			}
 		},
 		watch: {
-			nameValue:function(v) {
+			nameValue(v) {
 				this.changeValue()
 			},
-			passwordValue:function(v) {
+			passwordValue(v) {
 				this.changeValue()
 			},
-			confirmPasswordValue:function(v) {
+			confirmPasswordValue(v) {
 				this.changeValue()
 			}
 			
@@ -43,7 +50,12 @@
 			},
 			register:function() {
 				this.changeValue();
-				// localStorage.setItem()
+				if(this.passwordValue.trim() === this.confirmPasswordValue.trim() && this.passwordValue.trim().length >= 3 && this.nameValue.trim().length >= 4) {
+					this.$store.state.users.name = this.nameValue.trim()
+					this.$store.state.users.password = this.passwordValue.trim()
+					localStorage.setItem('users', JSON.stringify(this.$store.state.users))
+					this.$router.replace('/signin')
+				}
 			},
 			changeValue:function() {
 
@@ -51,9 +63,6 @@
 				this.passwordValue.trim().length >= 3 ? this.passwordErrorText = "" : this.passwordErrorText = "密码最少三个字符"
 				this.confirmPasswordValue.trim() == this.passwordValue.trim() && this.confirmPasswordValue.trim().length > 0 ? this.confirmPasswordErrorText = "" : this.confirmPasswordErrorText = "密码不一致"
 
-				if(this.passwordValue.trim() != this.confirmPasswordValue.trim() || this.passwordValue.trim().length < 3 || this.nameValue.trim().length < 4) {
-					return;
-				}
 			}
 		}
 	}

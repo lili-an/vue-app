@@ -23,16 +23,16 @@ import mFooter from './components/footer'
 import './assets/sass/reset.css'  //css link方式引入会报错
 export default {
   name: 'app',
-  data: function() {
+  data() {
     return {
       
     }
   },
   computed: {
-    showHF: function() {
+    showHF() {
       return this.$store.state.showHF
     },
-    loading: function() {
+    loading() {
       return this.$store.state.loading
     }
   },
@@ -76,6 +76,7 @@ html, body{
   overflow-y: scroll;
   -webkit-tap-highlight-color: transparent;
   -webkit-appearance: none;
+  -webkit-overflow-scrolling: touch;
   font-family: "Helvetica Neue",Helvetica,Arial,"Hiragino Sans GB","Hiragino Sans GB W3","WenQuanYi Micro Hei",sans-serif;
 }
 html::-webkit-scrollbar,

@@ -15,12 +15,14 @@ const store = new Vuex.Store({
 		limit: 8,
 		bottomNav: 'home',
 		topPopupMsg: '',
-		movieList: []
+		movieList: [],
+		users:{},
+		usersOff: true
 	},
 	actions: {
 		//获取数据 异步
-		increments: function(context) {
-	      context.commit('INCREMENT')
+		increments (context) {
+	      context.commit('increment')
 	    },
 		loadMovieList: function({commit}) {
 			axios.get('https://bird.ioliu.cn/netease?playlist_id=621793299')
@@ -37,7 +39,7 @@ const store = new Vuex.Store({
 		},
 	},
 	mutations: {  //同步
-		INCREMENT: function(state) {
+		increment (state) {
 	      state.count++
 	    },
 		SET_MOVIE_LIST: function(state, {list}) {
@@ -54,7 +56,7 @@ const store = new Vuex.Store({
 		SET_BottomPopup: function(state) {
 			state.topPopup = true
 	        if (state.topPopup) {
-		        setTimeout(function() {
+		        setTimeout(() => {
 		          state.topPopup = false
 		        }, 2000)
 		      }
@@ -62,7 +64,7 @@ const store = new Vuex.Store({
 
 	},
 	getters: {
-		doubleCount: function(state) {
+		doubleCount (state) {
 	      return state.count * 2
 	    }
 	},

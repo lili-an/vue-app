@@ -19,23 +19,24 @@
 
 export default {
 
-  data: function() {
+  data () {
     return {
     	n: 1,
     }
   },
   computed: {
-  	  limit: function() {
+  	  limit() {
         return this.$store.state.limit
       },
-      movieLists: function() {
+      movieLists() {
         return this.$store.state.movieList
       }
     },
-    mounted: function() {
+    mounted() {
        this.$nextTick(function() {
           this.movieList()
           this.$store.state.showHF = true
+          this.$store.state.bottomNav= 'home'
           // this.$store.state.loading = false
        })
     },
@@ -43,7 +44,7 @@ export default {
       movieList: function(){
         this.$store.dispatch('loadMovieList')
         },
-	  swipeUp: function() {
+	  swipeUp:function() {
 		this.n+=1
 		this.$store.dispatch('loadMovieList')
 		this.$store.state.limit = this.n * 8

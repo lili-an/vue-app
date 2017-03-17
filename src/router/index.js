@@ -11,6 +11,8 @@ import hello from '@/components/Hello'
 Vue.use(Router)
 
 export default new Router({
+  mode: 'hash',
+  base: window.location.href,
   routes: [
     {
       path: '/home',
