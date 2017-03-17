@@ -22,12 +22,12 @@ const store = new Vuex.Store({
 		increments: function(context) {
 	      context.commit('INCREMENT')
 	    },
-		loadMovieList: function(context) {
+		loadMovieList: function({commit}) {
 			axios.get('https://bird.ioliu.cn/netease?playlist_id=621793299')
-			.then(function(res) {
-                context.commit('SET_MOVIE_LIST', {list: res.data.result.tracks})
+			.then(res => {
+                commit('SET_MOVIE_LIST', {list: res.data.result.tracks})
                 // state.loading = false
-            }).catch(function(err){console.log(err)})
+            }).catch(err => console.log(err))
 		},
 		changeFlag: function(context) {
 			context.commit('SET_FLAG')
@@ -40,7 +40,7 @@ const store = new Vuex.Store({
 		INCREMENT: function(state) {
 	      state.count++
 	    },
-		SET_MOVIE_LIST: function(state, list) {
+		SET_MOVIE_LIST: function(state, {list}) {
 			state.loading = true
 			setTimeout(function() {
 				state.loading = false
