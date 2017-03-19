@@ -1,13 +1,15 @@
 <template>
   <div class="hello">
-    <mu-appbar title="图片详情">
+    <mu-appbar title="图片详情" class="new-appbar">
       <mu-icon-button icon='keyboard_arrow_left' slot="left" @click="back"/>
       <mu-icon-button icon='center_focus_weak' slot="right"/>
     </mu-appbar>
     <ul class="mul">
       <li v-for="(mp,index) in mpList">
-        <p>歌名:{{ mp.name }}</p>
         <img :src="mp.album.picUrl">
+        <p>歌名:{{ mp.name }}</p>
+        <p>歌手:{{ mp.artists[0].name }}</p>
+        <audio :src="mp.mp3Url" preload="auto" controls></audio>
       </li>
     </ul>
   </div>
@@ -54,11 +56,16 @@ h1 {
 
 ul {
   list-style-type: none;
-  padding: 0;
+  padding: 65px 0 0;
 }
-
+.new-appbar {
+  position: fixed;
+}
 .hello {
   margin-top: -56px;
+}
+img {
+  width: 100%;
 }
 
 </style>

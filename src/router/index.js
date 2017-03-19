@@ -7,6 +7,7 @@ import personal from '@/components/personal'
 import signin from '@/components/signIn'
 import register from '@/components/register'
 import hello from '@/components/Hello'
+import detail from '@/components/detail'
 
 Vue.use(Router)
 
@@ -38,6 +39,11 @@ export default new Router({
       path: '/customized',
       name: 'customized',
       component: customized
+    },
+    {
+      path: '/customized/detail',
+      name: 'detail',
+      component: detail
     },
     {
       path: '/share',
